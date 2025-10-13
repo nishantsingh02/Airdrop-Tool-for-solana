@@ -1,0 +1,32 @@
+import React from "react";
+import {
+  ConnectionProvider,
+  WalletProvider,
+} from "@solana/wallet-adapter-react";
+import "./App.css";
+import { WalletModalProvider, WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import '@solana/wallet-adapter-react-ui/styles.css';
+
+import { Airdrop } from "./Airdrop";
+import { Button } from "./Button";
+
+function App() {
+  return (
+    <ConnectionProvider endpoint="https://api.devnet.solana.com">
+      <WalletProvider wallets={[]} autoConnect> 
+        <WalletModalProvider>
+          <div className="flex flex-col items-center justify-center space-y-4 text-gray-400 p-4">
+            <WalletMultiButton className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600" />
+            <h3 className="text-lg font-semibold">Airdrop Some SOL</h3>
+            <Airdrop />
+            <Button>
+              Airdrop 
+            </Button>
+          </div>
+        </WalletModalProvider>
+      </WalletProvider>
+    </ConnectionProvider>
+  );
+}
+
+export default App;
