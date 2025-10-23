@@ -1,0 +1,46 @@
+import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import {
+  LAMPORTS_PER_SOL,
+  PublicKey,
+  SystemProgram,
+  Transaction,
+} from "@solana/web3.js";
+
+export const SendTokens = () => {
+  const wallet = useWallet();
+  const { connection } = useConnection();
+
+  async function sendTokens() {
+    let to = (document.getElementById("to") as HTMLInputElement)?.value;
+    let amount = (document.getElementById("amount") as HTMLInputElement)?.value;
+
+    if (!wallet.publicKey) {
+      alert("Connect your wallet first!");
+      return;
+    }
+
+    if(!to || !amount) {
+        alert("")
+    }
+
+    const transaction = new Transaction();
+    transaction.add(
+      SystemProgram.transfer({
+        fromPubkey: wallet.publicKey,
+        toPubkey: new PublicKey(to),
+        lamports: amount * LAMPORTS_PER_SOL,
+      })
+    );
+
+    await wallet.sendTransaction(transaction, connection);
+    alert("Sent " + amount + "SOL to" + to);
+  }
+
+  return (
+    <div>
+      <input id="to" type="text" placeholder="Sender Address" />
+      <input id="amount" type="text" placeholder="Amount" />
+      <button onClick={sendTokens}>Send</button>
+    </div>
+  );
+};
