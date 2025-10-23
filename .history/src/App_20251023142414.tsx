@@ -35,7 +35,7 @@ function App() {
               </span>
             </div>
 
-           <div className="bg-black/20 backdrop-blur-lg text-2xl text-white px-6 py-2 rounded-2xl border border-white/10">
+            <div className="bg-purple-600 text-white px-5 py-2 rounded-lg shadow-lg shadow-purple-500/50">
   <ShowSolBalance />
 </div>
 

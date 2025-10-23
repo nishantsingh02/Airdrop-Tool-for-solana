@@ -24,7 +24,8 @@ export const ShowSolBalance = () => {
 
     return (
       <div>
-      <p>SOL Balance : {balance !== null ? `${balance} SOL` : "Connect your wallet"}</p>
+      <p>SOL Balance: {balance !== null ? `${balance} SOL` : "Connect your wallet"}</p>
+      
     </div>
     );
 };
